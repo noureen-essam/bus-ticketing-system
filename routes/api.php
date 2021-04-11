@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/book/ticket/line/{trip_id}/from/{start_station_id}/to/{end_station_id}','ticketsController@bookTrip')->middleware('api_token');
+Route::get('/get/trip/{trip_id}/available/seats/from/{start_station_id}/to/{end_station_id}','ticketsController@getAvailableSeats')->middleware('api_token');
