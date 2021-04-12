@@ -18,7 +18,7 @@ DB_HOST=127.0.0.1<br>
 DB_PORT=1433<br>
 DB_DATABASE=FLEET<br>
 DB_USERNAME=sa<br>
-DB_PASSWORD=ArkansasHeartHospital!<br>
+DB_PASSWORD=xxxxx<br>
 
 ## Run the database migrations
 
