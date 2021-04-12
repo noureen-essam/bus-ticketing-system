@@ -32,3 +32,20 @@ php artisan db:seed
 
 php artisan serve
 
+
+## APIs
+Don't forget to send the api_token with the request <br>
+The token must be equal to the APP_KEY in .env file to authorize the request<br><br>
+
+'/book/ticket/line/{trip_id}/from/{start_station_id}/to/{end_station_id}'<br>
+Route to book a seat in trip <br><br>
+
+'/get/trip/{trip_id}/available/seats/from/{start_station_id}/to/{end_station_id}'<br>
+Route to get a list of available seats in trip <br><br>
+
+'/get/all/trips'<br>
+Route to get all available trips<br><br>
+
+'/get/trip/{trip_id}/stations'<br>
+Route to get stations of trip<br>
+

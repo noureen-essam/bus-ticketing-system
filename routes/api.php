@@ -20,3 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/book/ticket/line/{trip_id}/from/{start_station_id}/to/{end_station_id}','ticketsController@bookTrip')->middleware('api_token');
 Route::get('/get/trip/{trip_id}/available/seats/from/{start_station_id}/to/{end_station_id}','ticketsController@getAvailableSeats')->middleware('api_token');
+
+
+Route::get('/get/all/trips','ticketsController@getAllTrips')->middleware('api_token');
+Route::get('/get/trip/{trip_id}/stations','ticketsController@getTripStations')->middleware('api_token');

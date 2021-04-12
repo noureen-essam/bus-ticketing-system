@@ -111,4 +111,35 @@ class ticketsController extends Controller
         $bookedSeatNumbers=Tickets::whereIn('id',$ticketIds)->pluck('seatNumber')->toArray();
         return $bookedSeatNumbers;
     }
+
+    //Get all available trips
+    public function getAllTrips(){
+        $trips=Trips::all();
+        if(count($trips) < 1){
+            return response()->json(['error' => 'There are no trips available'], 200);
+        }
+        return response()->json(['trips' => $trips], 200);
+    }
+
+    //get stations of trip
+    public function getTripStations($trip_id){
+        $trip=Trips::find($trip_id);
+        if(!$trip){
+            return response()->json(['error' => 'Trip id not exist'], 404);
+        }
+
+        $TripConnections = TripConnections::where('trip_id',$trip_id)->select('start_station_id','end_station_id')->get();
+
+        if(count($TripConnections) < 1){
+            return response()->json(['error' => 'No available stations for this trip'], 404);
+        }
+        $startPoints=$TripConnections->pluck('start_station_id')->toArray();
+        $endPoints=$TripConnections->pluck('end_station_id')->toArray();
+
+        $array = array_values(array_unique (array_merge ($startPoints, $endPoints)));
+        $stations = Stations::whereIn('id',$array)->get();
+
+        return response()->json(['stations' => $stations], 200);
+
+    }
 }
